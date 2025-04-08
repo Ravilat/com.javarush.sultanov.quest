@@ -29,6 +29,9 @@ public class AnswersToQuestions extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
+
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         HttpSession session = request.getSession();
         String name = session.getAttribute("name").toString();
