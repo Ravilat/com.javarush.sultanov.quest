@@ -3,6 +3,7 @@ package controller;
 import entity.*;
 import repository.Repository;
 import services.RepositoryService;
+
 import java.io.*;
 
 import javax.servlet.ServletException;
@@ -32,9 +33,11 @@ public class AnswersToQuestions extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html");
+        response.setContentType("text/html; charset=UTF-8");
+
         HttpSession session = request.getSession();
         String name = session.getAttribute("name").toString();
+
         String n = request.getParameter("n");
         Answer answer = repositoryService.getAnswerById(n);
         if (answer.getResult() == Result.WIN) {

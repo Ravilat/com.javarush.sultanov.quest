@@ -1,4 +1,5 @@
-
+<%@ page import="services.RepositoryService" %>
+<%@ page import="repository.Repository" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -15,17 +16,20 @@
 </head>
 
 <body>
+<br/>
 <div style="margin-left: 40px">
     <h2> Пролог</h2>
 </div>
 <div style="margin-left: 20px">
     <h3>
-        Вы - обычный богатырь, возвращающийся с похода. Змей Горыныч повержен, а значит можно расслабиться и пойти
-        домой.
-        С собой у вас был только меч, служивший вам верой и правдой все эти годы, да пара монет в кошельке.
-        В одном трактире вы встретили торговца, который представился Сан Санычем. А вас как зовут?
+        <%
+            RepositoryService r = new RepositoryService(Repository.getRepository());
+            String intro = r.getIntro();
+        %>
+        <%=intro%>
     </h3>
 </div>
+
 <div style="margin-left: 20px">
     <form method="get" action="greeting">
         Игрок: ${name}

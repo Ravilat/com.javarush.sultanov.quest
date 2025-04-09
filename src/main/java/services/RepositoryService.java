@@ -13,6 +13,7 @@ public class RepositoryService {
     Repository repository;
     List<Question> questions;
     List<Answer> answers;
+    String intro;
 
 
     public RepositoryService(Repository repository) {
@@ -23,6 +24,10 @@ public class RepositoryService {
     List<Question> fillQuestionsFromRepo(List<String[]> repoList) {
         questions = new ArrayList<>();
         for (String[] record : repoList) {
+            if (record[0].equals("0")) {
+                intro = record[1];
+                continue;
+            }
             if (record.length != 3 && record.length != 4) {
                 throw new IllegalArgumentException("invalid data: small length record");
             }
@@ -70,7 +75,6 @@ public class RepositoryService {
                 answer.setResult(getResult(record[2]));
                 answer.setResultText(record[3]);
                 answers.add(answer);
-
             }
         }
         return answers;
@@ -111,4 +115,9 @@ public class RepositoryService {
     public List<Answer> getAnswers() {
         return answers;
     }
+
+    public String getIntro() {
+        return intro;
+    }
+
 }

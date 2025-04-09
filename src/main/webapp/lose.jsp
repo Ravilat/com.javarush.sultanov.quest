@@ -12,10 +12,10 @@
     <title>Приключение богатыря</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
-
 </head>
 
 <body>
+<br/>
 <div style="margin-left: 40px">
     <h2> УВЫ, ВЫ ПРОИГРАЛИ!</h2>
 </div>
