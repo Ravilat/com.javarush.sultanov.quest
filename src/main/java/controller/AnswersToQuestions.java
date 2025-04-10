@@ -40,6 +40,7 @@ public class AnswersToQuestions extends HttpServlet {
 
         String n = request.getParameter("n");
         Answer answer = repositoryService.getAnswerById(n);
+
         if (answer.getResult() == Result.WIN) {
             String textWin = answer.getResultText();
             request.setAttribute("textWin", textWin);
@@ -50,14 +51,17 @@ public class AnswersToQuestions extends HttpServlet {
             request.getServletContext().getRequestDispatcher("/lose.jsp").forward(request, response);
         } else {
             question = repositoryService.getQuestionById(answer.getIdQuestion());
+
             Answer answer1 = repositoryService.getAnswerById(question.getAnswersId().get(0));
             Answer answer2 = repositoryService.getAnswerById(question.getAnswersId().get(1));
+
             request.setAttribute("name", name);
             request.setAttribute("answer1", answer1.getAnswer());
             request.setAttribute("answer2", answer2.getAnswer());
             request.setAttribute("question", question.getQuestion());
             request.setAttribute("idAnswer1", answer1.getId());
             request.setAttribute("idAnswer2", answer2.getId());
+
             request.getServletContext().getRequestDispatcher("/qa.jsp").forward(request, response);
         }
     }

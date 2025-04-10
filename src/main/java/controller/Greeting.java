@@ -42,21 +42,26 @@ public class Greeting extends HttpServlet {
 
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
+
         String name = req.getParameter("yourname");
+
         HttpSession session = req.getSession();
         session.setAttribute("count", 0);
         session.setAttribute("name", name);
+
         redirectionRequest(req, resp);
     }
 
     private void redirectionRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Answer answer1 = repositoryService.getAnswerById(question.getAnswersId().get(0));
         Answer answer2 = repositoryService.getAnswerById(question.getAnswersId().get(1));
+
         req.setAttribute("answer1", answer1.getAnswer());
         req.setAttribute("answer2", answer2.getAnswer());
         req.setAttribute("question", question.getQuestion());
         req.setAttribute("idAnswer1", answer1.getId());
         req.setAttribute("idAnswer2", answer2.getId());
+
         req.getServletContext().getRequestDispatcher("/qa.jsp").forward(req, resp);
     }
 }
